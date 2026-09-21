@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Local environment / secrets (keep the template)
+.env
+.env.*
+!.env.example
+
+# Test output
+test-results/
+*.log
+
+# Private question bank + images. The fictional demo bank is generated on demand by
+# `npm run demo-bank`; an imported real bank must never be committed.
+private/
+
+# Generated cloud-function assets + manifests (created by `npm run setup`)
+functions/*/assets/
+functions/math2-api/assets-manifest.json
+functions/math2-api/legacy-assets-manifest.json
+functions/math2-api/index.js
+
+# Generated front-end bundles (created by `npm run build`)
+public/vendor/cloudbase.js
+public/sw.js
+
+# Generated database schema with a fresh empty state (created by `npm run setup`)
+schema.sql
+
+# Author-only deployment record
+deployment.private.json

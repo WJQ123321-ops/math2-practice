@@ -1,0 +1,1 @@
+{"envId":"","functionRoot":"functions","functions":[{"name":"math2-api","runtime":"Nodejs20.19","handler":"index.main","timeout":30,"memorySize":256,"installDependency":false,"ignore":["handler.cjs","engine.cjs"]}]}

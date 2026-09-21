@@ -1,0 +1,34 @@
+{
+  "name": "math2-practice",
+  "version": "1.0.0",
+  "description": "Self-hosted, single-user math practice web app on Tencent CloudBase: offline-first PWA front end plus a protected cloud function that serves your question bank and syncs study records. Ships with a fictional demo bank; import your own legally-licensed content.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "demo-bank": "node scripts/make-demo-bank.cjs",
+    "setup": "node scripts/setup.cjs",
+    "build": "node scripts/build.cjs",
+    "serve": "node scripts/serve.cjs",
+    "install:local": "node scripts/install.cjs",
+    "deploy": "node scripts/deploy.cjs",
+    "test": "node --test tests/engine.test.cjs tests/storage.test.cjs tests/auth.test.cjs tests/healthcheck.test.cjs tests/banks.test.cjs",
+    "test:banks": "node --test tests/banks.test.cjs",
+    "test:browser": "node tests/browser.test.cjs",
+    "test:compat": "node tests/browser-compat.cjs",
+    "test:banks-browser": "node tests/banks-browser.cjs"
+  },
+  "dependencies": {
+    "@cloudbase/js-sdk": "3.10.0",
+    "@cloudbase/manager-node": "5.8.7",
+    "esbuild": "0.28.2",
+    "fake-indexeddb": "6.2.5",
+    "playwright": "1.63.0"
+  },
+  "devDependencies": {
+    "@cloudbase/cli": "^3.8.2"
+  }
+}
