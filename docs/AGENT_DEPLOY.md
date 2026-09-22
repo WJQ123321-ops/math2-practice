@@ -33,11 +33,17 @@
 - 引导用户把上述值写入 `.env`（可由用户在本地编辑器填写，或在终端交互输入）。`.env` 已被 git 忽略。
 - **不要**把真实 UID/邮箱回显到对话或日志；确认「已写入」即可。
 
+### 3.5 导入真实题库（如用户自带题库；否则跳过用示例题库）
+1. 把 `bank.json`、`legacy-bank.json` 放入 `private/data/`，图片放入 `private/images/`（schema 见 `docs/DEPLOYMENT.md#题库-schema` 与 `scripts/make-demo-bank.cjs`）。
+2. `node scripts/setup.cjs`（把题库与图片打包进 `functions/math2-api/assets/` 并生成两份清单）→ `node scripts/build.cjs`。
+3. 自检：`npm test`（20 项）；有条件再跑 `npm run test:browser`、`npm run test:banks-browser`。
+4. **内容边界**：`private/`、`functions/math2-api/assets/`、`.env`、`schema.sql` 均被 git 忽略。提交前用 `git status --porcelain` 确认这些目录**没有**混入待提交列表；不要 `git add -f`，不要改动 `.gitignore` 的这些规则，不要把题目或图片内容贴进聊天、Issue、PR 或提交信息。题库规模较大时 `setup` 与浏览器测试耗时更长，属正常。
+
 ### 4. 本地构建与自检（不碰云）
 ```bash
 node scripts/install.cjs
 ```
-预期：生成/复用题库 → setup → build → 19 项 Node 测试通过。失败则按报错定位（缺依赖→`npm ci`；缺 `CLOUDBASE_ENV`→build 会用占位值并警告；测试失败→看具体断言）。
+预期：生成/复用题库 → setup → build → 20 项 Node 测试通过。失败则按报错定位（缺依赖→`npm ci`；缺 `CLOUDBASE_ENV`→build 会用占位值并警告；测试失败→看具体断言）。
 
 ### 5. 征得授权后再动云端
 - 明确告知用户：部署会**创建/更新云资源**、**公开站点**、**可能计费**，并询问是否授权。
@@ -58,6 +64,7 @@ node scripts/install.cjs
 ### 8. 交付
 - 给出：访问地址、健康检查结果、手动验证清单、后续维护方法（升级/备份/恢复/卸载见 `docs/DEPLOYMENT.md`）。
 - **绝不输出**密钥、验证码、SecretKey；UID/邮箱如非必要也不回显。
+- 如产生提交：只提交代码/文档/测试，提交前确认待提交列表**不含** `private/`、`assets/`、`.env`、`schema.sql`。
 
 ## 可直接执行的命令速查
 

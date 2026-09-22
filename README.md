@@ -11,6 +11,7 @@
 - 本项目是**非官方**的学习辅助工具，与考试主管部门、任何出版社、腾讯云及其它服务商**无隶属或背书关系**。
 - 题目、解析以及任何 AI 生成内容（如有）**可能存在错误**，本项目**不承诺**考试成绩或学习效果。
 - 仓库**仅包含虚构示例题目**，不包含任何真题、书扫图片或出版物内容。第三方内容（你自行导入的题目、图片、解析）的权利归**原权利人**所有；**使用者须自行确保拥有合法使用与再分发权限**。请勿假设任何出版题库可以再分发。
+- 你导入的题库**只留在本地**：`private/`、`functions/math2-api/assets/`、`schema.sql`、`.env` 均被 git 忽略，**不会**也不会被 `git add -f` 提交。公开仓库中因此不含任何真实题目或书扫图片——**请不要**把这些目录加入版本库、不要关闭相关 ignore 规则、不要把题库内容贴进 Issue/PR/讨论。
 - 部署者**自行管理**账号、数据安全、访问权限与备份。云函数仅允许 `.env` 中登记的单个 UID/邮箱访问，但数据安全最终由部署者负责。
 - 腾讯云、模型接口、域名等第三方服务**可能收费**，费用由**部署者自行承担**。
 - 本项目按 MIT 许可证「**按现状**」提供，不含任何明示或默示担保。详见 [`LICENSE`](LICENSE) 与 [`NOTICE.md`](NOTICE.md)。
@@ -47,7 +48,7 @@ npm ci                 # 安装依赖
 npm run demo-bank      # 生成虚构示例题库（private/data + 一张示例配图）
 npm run setup          # 生成受保护资源、清单与空数据库 schema.sql
 npm run build          # 构建前端与云函数产物（需要 CLOUDBASE_ENV，见下）
-npm test               # 运行 Node 测试套件（19 项）
+npm test               # 运行 Node 测试套件（20 项）
 npm run serve          # 本地静态预览 http://127.0.0.1:8787（不含云同步）
 ```
 
@@ -118,6 +119,17 @@ npm run test:compat         # 兼容/降级：无 SW、无 CacheStorage、旧 AP
 2. 重新运行 `npm run setup && npm run build`，再 `node scripts/deploy.cjs`。
 3. `private/` 已被 git 忽略——**你导入的真实题库不会被提交**。请自行确认拥有再分发权限。
 
+导入后先自检（本地，不碰云）：
+
+```bash
+npm test                 # Node 测试（含分区计数、图片资源存在性、鉴权，20 项）
+npm run test:browser     # 浏览器：离线、保存、图片放大、移动端布局（需本机 Edge/Chrome）
+npm run test:banks-browser  # 浏览器：双分区笔记隔离、跨设备、章节遍历（题库较大时耗时更长）
+npm run serve            # 本地静态预览 http://127.0.0.1:8787（不含云同步）
+```
+
+> 题库规模会明显影响耗时：`setup` 需拷贝并重算全部资源哈希，`test:banks-browser` 会把整份题库灌进浏览器缓存。**945 题 / 1725 张图（约 58 MB）** 实测 `setup` 约 1 分钟、浏览器测试数分钟，属正常。
+
 > ID 命名空间 `cxyonly:`（真题分区）与 `lilin880:`（分册分区）是**结构性标识**，被 `core.js`/`engine.cjs`/`storage.js` 的校验正则共用。保留它们可避免大范围改动；如需改名，须同步修改这些正则与 `index.html`/`app.js` 中的 `data-bank` 与标签。
 
 ---
@@ -142,10 +154,13 @@ npm run test:compat         # 兼容/降级：无 SW、无 CacheStorage、旧 AP
 
 ```
 请帮我把这个「数二练习本」开源项目部署到我自己的腾讯云 CloudBase 环境。要求：
-1. 先读 README.md 和 docs/DEPLOYMENT.md、docs/AGENT_DEPLOY.md，按文档检查 Node 版本与依赖。
-2. 一次性列出所有还缺的必填配置（CLOUDBASE_ENV、MATH2_ALLOWED_UID、MATH2_ALLOWED_EMAIL 等），不要反复追问；指导我去腾讯云控制台哪里获取，不要让我把密钥粘贴到聊天里。
-3. 用本地 .env（git 忽略）保存配置；先跑 node scripts/install.cjs 做本地构建与自检。
-4. 在我明确授权后，再执行 npx tcb login 和 node scripts/deploy.cjs（先 --dry-run 给我看将执行什么）。部署会创建/更新云资源并公开站点、可能计费，动手前先跟我确认。
-5. 部署后做健康检查，并明确区分「函数进程存活」「数据库可用」「完整功能」；最后给我访问地址和手动验证步骤，不要输出任何密钥。
-6. 失败时定位原因、给出恢复或清理步骤，保护我已有的数据。
+1. 先读 README.md 和 docs/DEPLOYMENT.md、docs/AGENT_DEPLOY.md，按文档检查 Node 版本与依赖（Node ≥ 20.19，否则 npm ci）。
+2. 一次性列出所有还缺的必填配置（CLOUDBASE_ENV、MATH2_ENV_ID、MATH2_ALLOWED_UID、MATH2_ALLOWED_EMAIL 等），不要反复追问；指导我去腾讯云控制台哪里获取，不要让我把密钥粘贴到聊天里。UID/邮箱属个人信息，确认写入即可，不要回显。
+3. 用本地 .env（git 忽略）保存配置。
+4. 题库：如果我要用自己的题库，把 bank.json、legacy-bank.json 放进 private/data/、图片放进 private/images/，然后 npm run setup && npm run build。**private/ 必须保持 git 忽略，绝不提交、绝不贴进聊天/Issue**；没有自己的题库就 npm run demo-bank 生成虚构示例。
+5. 本地自检：npm test（20 项）；有本机浏览器时 npm run test:browser / npm run test:banks-browser。题库较大（如近千题、上千张图）时这些步骤耗时更长，属正常。报告结果要如实，未跑的步骤不要说成已通过。
+6. 在我明确授权后，再执行 npx tcb login 和 node scripts/deploy.cjs（先 --dry-run 给我看将执行什么）。部署会创建/更新云资源并公开站点、可能计费，动手前先跟我确认。
+7. 部署后做健康检查，并明确区分「函数进程存活」「数据库可用」「完整功能」；最后给我访问地址和手动验证步骤，不要输出任何密钥。
+8. 失败时定位原因、给出恢复或清理步骤，保护我已有的数据；任何删除前先让我导出备份。
+9. 改动需要提交时：只提交代码/文档/测试，**先 git status 确认没有 private/、assets/、.env、schema.sql 等被忽略产物混入**；不要把题库内容写进提交信息或 PR 描述。
 ```

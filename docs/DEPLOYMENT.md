@@ -68,7 +68,7 @@ npm ci
 node scripts/install.cjs        # 等价于 demo-bank(如需) -> setup -> build -> test
 ```
 
-`install.cjs` 会：检查 Node 版本与依赖；若 `private/data/bank.json` 不存在则生成**虚构示例题库**（已导入真实题库则跳过，加 `--force-demo` 才覆盖）；生成受保护资源、清单与空 `schema.sql`；构建前端与云函数；运行 19 项 Node 测试。
+`install.cjs` 会：检查 Node 版本与依赖；若 `private/data/bank.json` 不存在则生成**虚构示例题库**（已导入真实题库则跳过，加 `--force-demo` 才覆盖）；生成受保护资源、清单与空 `schema.sql`；构建前端与云函数；运行 20 项 Node 测试。
 
 单独执行：
 

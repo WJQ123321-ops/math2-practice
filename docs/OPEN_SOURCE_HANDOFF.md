@@ -16,7 +16,7 @@
 - **新增**：`LICENSE`(MIT)、`NOTICE.md`、`.env.example`、`scripts/install.cjs`、`scripts/deploy.cjs`、`scripts/env.cjs`、`docs/DEPLOYMENT.md`、`docs/AGENT_DEPLOY.md`、本报告；强化 `.gitignore`。
 - **删除**：一次性代码改写脚本（`integrate.cjs`/`refine.cjs`/`position-fix.cjs`，对已迁移文件做字符串替换、非幂等、会损坏当前代码）、旧版 `storage.original.js`、命中正式站点的 `live-*.cjs`。
 
-完成状态：本地构建、Node 测试（19 项）与三套浏览器测试（Edge）均通过；隐私/版权清理与产物扫描通过。**真实云端部署未执行**（见第 9 节）。
+完成状态：本地构建、Node 测试（20 项）与三套浏览器测试（Edge）均通过；隐私/版权清理与产物扫描通过。**真实云端部署未执行**（见第 9 节）。
 
 ## 2. 技术栈、目录结构、主要入口
 
@@ -85,7 +85,7 @@ npm ci                          # 安装依赖
 npm run demo-bank               # 生成虚构示例题库（仅示例）
 npm run setup                   # private/ -> assets/ + 清单 + 空 schema.sql
 npm run build                   # 构建前端与云函数（需 CLOUDBASE_ENV）
-npm test                        # Node 测试（engine/storage/auth/healthcheck/banks，19 项）
+npm test                        # Node 测试（engine/storage/auth/healthcheck/banks，20 项）
 npm run serve                   # 本地静态预览 http://127.0.0.1:8787
 node scripts/install.cjs        # 本地一键：demo-bank(如需)->setup->build->test
 # 浏览器测试（需本机 Edge/Chrome；先 demo-bank+setup+build）
@@ -114,7 +114,7 @@ node scripts/deploy.cjs
 
 ## 10. 测试结果与未验证部分
 
-- **已验证（本地隔离环境，实际运行）**：`npm ci`；`install.cjs` 全流程；`npm test` 19 项全过；`test:browser`、`test:banks-browser`、`test:compat` 三套浏览器测试用本机 Edge 全过（示例题库渲染、图片放大、离线保存与刷新、双分区笔记隔离、跨设备、降级兼容）；`deploy.cjs --dry-run` 与缺配置报错路径；构建产物与待提交文件经扫描**不含**个人标识/密钥/版权素材。
+- **已验证（本地隔离环境，实际运行）**：`npm ci`；`install.cjs` 全流程；`npm test` 20 项全过；`test:browser`、`test:banks-browser`、`test:compat` 三套浏览器测试用本机 Edge 全过（示例题库渲染、图片放大、离线保存与刷新、双分区笔记隔离、跨设备、降级兼容）；`deploy.cjs --dry-run` 与缺配置报错路径；构建产物与待提交文件经扫描**不含**个人标识/密钥/版权素材。
 - **未验证（无授权测试云环境，未实际运行）**：真实 CloudBase 环境创建、`tcb login`、`db execute` 初始化、`fn deploy`/`hosting deploy`、线上邮箱登录与端到端云同步、自定义域名/备案。`tcb` 命令参数依据本机 CLI 3.8.2 `--help` 核对，但**云端流程未跑通即不视为已验证**。部署者首次上线须按 `docs/DEPLOYMENT.md` 第 7 节手动验证。
 
 ## 11. 已知问题、技术债与建议后续
