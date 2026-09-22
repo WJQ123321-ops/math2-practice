@@ -16,9 +16,16 @@ test('both partitions index independently; demo counts and ids remain intact',as
 });
 
 test('demo bank is clearly fictional and ships no real book content',()=>{
+ // Only meaningful for the shipped demo bank; an imported real bank (mode!=="demo") is skipped.
+ if(bank.mode!=='demo')return;
  assert.equal(bank.mode,'demo');
  assert.ok(exam.length>0&&part2.length>0);
  for(const qq of bank.questions)assert.ok(/示例|虚构/.test(qq.source),'demo question must be labelled fictional: '+qq.id);
+});
+
+test('bank has a recognised mode and both partitions populated',()=>{
+ assert.ok(['demo','accepted'].includes(bank.mode),'unexpected bank mode: '+bank.mode);
+ assert.ok(exam.length>0&&part2.length>0,'both partitions must be populated');
 });
 
 test('sync retains distinct notes and separate resume positions, restores both partitions',()=>{
@@ -38,14 +45,17 @@ test('backup validates both namespaces and rejects malformed IDs',async()=>{
  assert.throws(()=>validateBackup({...d,records:[blank('lilin880:../../bad')]}));
 });
 
-test('demo image assets exist, are private, and are never exposed publicly',()=>{
+test('image assets exist, are private, and are never exposed publicly',()=>{
  const fs=require('node:fs'),path=require('node:path');let withImages=0;
  for(const qq of bank.questions){
-  for(const p of qq.document.asset_refs||[]){withImages++;
-   assert.ok(fs.statSync(path.resolve(__dirname,'../private',p)).size>100,'asset missing: '+p);
-   assert.ok(!fs.existsSync(path.resolve(__dirname,'../public',p)),'asset must not be public: '+p);}
+  for(const p of qq.document.asset_refs||[]){
+   // asset refs may be plain paths (demo) or content-addressed keys resolved via resources.
+   const resolved=qq.resources?.[p]&&/^images\//.test(qq.resources[p])?qq.resources[p]:p;
+   withImages++;
+   assert.ok(fs.statSync(path.resolve(__dirname,'../private',resolved)).size>100,'asset missing: '+resolved);
+   assert.ok(!fs.existsSync(path.resolve(__dirname,'../public',resolved)),'asset must not be public: '+resolved);}
  }
- assert.ok(withImages>0,'demo bank should exercise at least one image asset');
+ assert.ok(withImages>0,'bank should exercise at least one image asset');
 });
 
 test('first part2 position preserves the previous exam position',()=>{const s=initial();s.position={current:'cxyonly:2001',device:'old',seq:0};const r=apply(s,{position:{current:q.id}});assert.equal(r.state.positions.exam.current,'cxyonly:2001');assert.equal(r.state.positions.lilin880.current,q.id);});

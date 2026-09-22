@@ -19,8 +19,13 @@ test('server validates verified provider response and denies other accounts',asy
  global.fetch=async()=>new Response(JSON.stringify({sub:UID,email:'someone@example.com',status:'ACTIVE'}));
  assert.equal((await handler.main({action:'manifest',accessToken:'test-token-not-real'})).error,'ACCESS_DENIED');
  global.fetch=okUser;
- const r=await handler.main({action:'manifest',accessToken:'test-token-not-real'});
+ // v2 clients receive the full v2 manifest (bank + every image).
+ const r=await handler.main({action:'manifest',clientVersion:2,accessToken:'test-token-not-real'});
  assert.equal(r.ok,true);assert.equal(r.manifest.files.length,manifest.files.length);assert.ok(r.manifest.files.some(f=>f.path==='data/bank.json'));
+ // legacy clients receive the legacy manifest (old bank + only the images it references).
+ const legacyManifest=require('../functions/math2-api/legacy-assets-manifest.json');
+ const rl=await handler.main({action:'manifest',accessToken:'test-token-not-real'});
+ assert.equal(rl.ok,true);assert.equal(rl.manifest.files.length,legacyManifest.files.length);
  assert.equal((await handler.main({action:'asset',path:'../../deployment.private.json',accessToken:'test-token-not-real'})).error,'NOT_FOUND');
 }finally{global.fetch=old}});
 

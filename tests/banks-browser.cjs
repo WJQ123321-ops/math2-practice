@@ -33,11 +33,11 @@ const server=http.createServer(async(req,res)=>{
  await page.goto(base);await page.locator('#question .meta').waitFor({timeout:180000});
  assert.equal(await page.locator('#question-list button').count(),exam.length);
  await page.locator('#note').fill('原真题笔记保留');await page.waitForFunction(()=>document.querySelector('#save-status').textContent==='已存本机');
- await page.locator('[data-bank="lilin880"]').click();assert.equal(await page.locator('#question-list button').count(),part2.length);
+ await page.locator('[data-bank="lilin880"]').click();await page.waitForFunction(n=>document.querySelectorAll('#question-list button').length===n,part2.length,{timeout:60000});assert.equal(await page.locator('#question-list button').count(),part2.length);
  await page.locator('#question img').first().waitFor();await page.locator('#question .option').first().click();assert.equal(await page.locator('#question .option.selected').count(),1);await page.locator('#note').fill('分册独立笔记');await page.locator('#favorite').click();await page.waitForFunction(()=>document.querySelector('#save-status').textContent==='已存本机');
  await page.locator('[data-bank="exam"]').click();await page.waitForFunction(()=>document.querySelector('#note').value==='原真题笔记保留');assert.equal(await page.locator('#favorite').getAttribute('aria-pressed'),'false');
  await page.locator('[data-bank="lilin880"]').click();await page.waitForFunction(()=>document.querySelector('#note').value==='分册独立笔记');
- await page.locator('#number-search').fill(part2[0].originalNumber);await page.waitForTimeout(150);assert.ok(await page.locator('#question-list button').count()>0);
+ await page.locator('#number-search').fill(part2[0].originalNumber);await page.waitForFunction(n=>{const c=document.querySelectorAll('#question-list button').length;return c>0&&c<n},part2.length,{timeout:60000});assert.ok(await page.locator('#question-list button').count()>0);
  await page.locator('#clear').click();
  // Cover every demo chapter, an essay where present, and any partial-question sample.
  const chapters=[...new Set(part2.map(q=>(q.id.match(/:ch\d+:/)||[''])[0]).filter(Boolean))];
