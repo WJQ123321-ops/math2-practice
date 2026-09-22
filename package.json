@@ -13,6 +13,7 @@
     "setup": "node scripts/setup.cjs",
     "build": "node scripts/build.cjs",
     "serve": "node scripts/serve.cjs",
+    "serve:mock": "node scripts/serve-mock.cjs",
     "install:local": "node scripts/install.cjs",
     "deploy": "node scripts/deploy.cjs",
     "test": "node --test tests/engine.test.cjs tests/storage.test.cjs tests/auth.test.cjs tests/healthcheck.test.cjs tests/banks.test.cjs",
