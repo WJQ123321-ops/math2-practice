@@ -164,15 +164,20 @@ npm run serve:mock       # 本地模拟云端预览 http://127.0.0.1:8788（可�
 
 ## 给编程 Agent 的安装指令（可直接复制）
 
+**用法（共三步）**：① 把本仓库下载或克隆到电脑上；② 拿到题库 zip 包；③ 把下面提示词里两个尖括号路径换成实际路径，整段粘给会执行命令的 AI。解压、构建、配置、部署全部由 AI 代办，你只需要在它明确要求时动手（登录腾讯云、填验证码、确认授权）。
+
 ```
-请帮我把这个「数二练习本」开源项目部署到我自己的腾讯云 CloudBase 环境。要求：
-1. 先读 README.md 和 docs/DEPLOYMENT.md、docs/AGENT_DEPLOY.md，按文档检查 Node 版本与依赖（Node ≥ 20.19，否则 npm ci）。
-2. 一次性列出所有还缺的必填配置（CLOUDBASE_ENV、MATH2_ENV_ID、MATH2_ALLOWED_UID、MATH2_ALLOWED_EMAIL 等），不要反复追问；指导我去腾讯云控制台哪里获取，不要让我把密钥粘贴到聊天里。UID/邮箱属个人信息，确认写入即可，不要回显。
-3. 用本地 .env（git 忽略）保存配置。
-4. 题库：如果我要用自己的题库，把 bank.json、legacy-bank.json 放进 private/data/、图片放进 private/images/，然后 npm run setup && npm run build。**private/ 必须保持 git 忽略，绝不提交、绝不贴进聊天/Issue**；没有自己的题库就 npm run demo-bank 生成虚构示例。
-5. 本地自检：npm test（20 项）；有本机浏览器时 npm run test:browser / npm run test:banks-browser。题库较大（如近千题、上千张图）时这些步骤耗时更长，属正常。报告结果要如实，未跑的步骤不要说成已通过。
-6. 在我明确授权后，再执行 npx tcb login 和 node scripts/deploy.cjs（先 --dry-run 给我看将执行什么）。部署会创建/更新云资源并公开站点、可能计费，动手前先跟我确认。
-7. 部署后做健康检查，并明确区分「函数进程存活」「数据库可用」「完整功能」；最后给我访问地址和手动验证步骤，不要输出任何密钥。
+请帮我把这个「数二练习本」开源项目部署到我自己的腾讯云 CloudBase 环境。
+- 仓库已在本机：<仓库文件夹路径>
+- 我的题库是一个 zip 包：<题库包路径>（解压后是 private/ 目录：data/*.json + images/）
+请全程代办，我只做你明确要求我亲手做的事（登录、填验证码、确认授权）。要求：
+1. 读仓库里的 README.md、docs/DEPLOYMENT.md、docs/AGENT_DEPLOY.md；检查 Node 版本（≥20.19）与依赖，node_modules 缺失则 npm ci。
+2. 解压我的题库包，把其中的 private/ 合并到项目根目录 private/，然后依次运行 npm run setup（重新生成受保护资源与清单，题库约 945 题/1725 张图时约需 1 分钟，属正常）和 npm run build。
+3. 内容边界：private/、functions/math2-api/assets/、.env、schema.sql 必须保持 git 忽略，绝不提交，绝不把题目或图片内容贴进聊天/Issue/PR。
+4. 一次性列出所有还缺的必填配置（CLOUDBASE_ENV、MATH2_ENV_ID、MATH2_ALLOWED_UID、MATH2_ALLOWED_EMAIL 等），不要反复追问；指导我去腾讯云控制台哪里获取，不要让我把密钥粘贴到聊天里。UID/邮箱属个人信息，写入 .env（git 忽略）即可，不要回显。
+5. 本地自检：npm test（20 项）；有本机浏览器时可选跑 npm run test:browser / npm run test:banks-browser（题库大，耗时数分钟属正常）。结果如实报告，没跑过的不要说成已通过。
+6. 在我明确授权后，再执行 npx tcb login 和 node scripts/deploy.cjs（先 --dry-run 给我看将执行什么）。部署会创建/更新云资源并公开站点、可能计费。
+7. 部署后做健康检查，并明确区分「函数进程存活」「数据库可用」「完整功能」；最后给我访问地址和手动验证步骤（邮箱登录 → 写条笔记 → 刷新确认同步），不要输出任何密钥。
 8. 失败时定位原因、给出恢复或清理步骤，保护我已有的数据；任何删除前先让我导出备份。
-9. 改动需要提交时：只提交代码/文档/测试，**先 git status 确认没有 private/、assets/、.env、schema.sql 等被忽略产物混入**；不要把题库内容写进提交信息或 PR 描述。
+9. 如需提交代码：只提交代码/文档/测试，先 git status 确认没有 private/、assets/、.env、schema.sql 混入；不要把题库内容写进提交信息或 PR。
 ```
