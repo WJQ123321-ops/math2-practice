@@ -164,12 +164,12 @@ npm run serve:mock       # 本地模拟云端预览 http://127.0.0.1:8788（可�
 
 ## 给编程 Agent 的安装指令（可直接复制）
 
-**用法（共三步）**：① 把本仓库下载或克隆到电脑上；② 拿到题库 zip 包；③ 把下面提示词里两个尖括号路径换成实际路径，整段粘给会执行命令的 AI。解压、构建、配置、部署全部由 AI 代办，你只需要在它明确要求时动手（登录腾讯云、填验证码、确认授权）。
+**用法（共两步）**：① 拿到题库 zip 包；② 把下面提示词里的 `<题库包路径>` 换成实际路径，整段粘给会执行命令的 AI。仓库不用提前下载，AI 会自己获取；解压、构建、配置、部署全部由 AI 代办，你只需要在它明确要求时动手（登录腾讯云、填验证码、确认授权）。
 
 ```
 请帮我把这个「数二练习本」开源项目部署到我自己的腾讯云 CloudBase 环境。
-- 仓库已在本机：<仓库文件夹路径>
-- 我的题库是一个 zip 包：<题库包路径>（解压后是 private/ 目录：data/*.json + images/）
+- 代码仓库：https://github.com/WJQ123321-ops/math2-practice。如果你还没有这份代码，先 git clone 到工作目录；clone 失败（网络受限）就改用 https://codeload.github.com/WJQ123321-ops/math2-practice/zip/refs/heads/main 下载 zip 后解压；仍不行再让我手动从 GitHub 网页下载并告诉你路径。
+- 我的题库是一个 zip 包：<题库包路径>（解压后是 private/ 目录：data/*.json + images/）。
 请全程代办，我只做你明确要求我亲手做的事（登录、填验证码、确认授权）。要求：
 1. 读仓库里的 README.md、docs/DEPLOYMENT.md、docs/AGENT_DEPLOY.md；检查 Node 版本（≥20.19）与依赖，node_modules 缺失则 npm ci。
 2. 解压我的题库包，把其中的 private/ 合并到项目根目录 private/，然后依次运行 npm run setup（重新生成受保护资源与清单，题库约 945 题/1725 张图时约需 1 分钟，属正常）和 npm run build。
