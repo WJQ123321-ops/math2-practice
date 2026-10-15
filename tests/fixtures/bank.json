@@ -1,0 +1,2011 @@
+{
+  "schemaVersion": 1,
+  "version": "demo-bank-v2",
+  "mode": "demo",
+  "questions": [
+    {
+      "id": "cxyonly:2001",
+      "year": 2001,
+      "papers": [
+        "示例卷（虚构）"
+      ],
+      "type": "essay",
+      "displayOptions": [],
+      "serial": 1,
+      "document": {
+        "format_version": 1,
+        "question_id": 2001,
+        "version_id": 1,
+        "category_id": "901",
+        "serial_number": 1,
+        "source": "示例卷",
+        "question_type": "essay",
+        "stem_md": "计算极限 $\\lim\\limits_{x \\to 0} \\dfrac{\\sin 3x}{x}$。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$3$"
+        },
+        "explanation_md": "利用等价无穷小 $\\sin 3x \\sim 3x\\ (x\\to 0)$：\n$$\\lim_{x\\to 0}\\frac{\\sin 3x}{x}=\\lim_{x\\to 0}\\frac{3x}{x}=3.$$"
+      },
+      "categoryIds": [
+        901
+      ],
+      "classification": [
+        {
+          "id": "901",
+          "path": [
+            "高等数学（示例）",
+            "极限与连续"
+          ],
+          "source": "示例分类"
+        }
+      ],
+      "source": "示例卷（虚构题目，非任何真题）",
+      "contentHash": "2acdba887bec37c97227e41546f548f8b92d6605b15795f33f78e29d48ea50f8",
+      "resources": {},
+      "resourceNotes": []
+    },
+    {
+      "id": "cxyonly:2002",
+      "year": 2002,
+      "papers": [
+        "示例卷（虚构）"
+      ],
+      "type": "single_choice",
+      "displayOptions": [
+        {
+          "id": "opt-a",
+          "label": "A",
+          "content_md": "$1$"
+        },
+        {
+          "id": "opt-b",
+          "label": "B",
+          "content_md": "$2$"
+        },
+        {
+          "id": "opt-c",
+          "label": "C",
+          "content_md": "$3$"
+        },
+        {
+          "id": "opt-d",
+          "label": "D",
+          "content_md": "$4$"
+        }
+      ],
+      "serial": 2,
+      "document": {
+        "format_version": 1,
+        "question_id": 2002,
+        "version_id": 2,
+        "category_id": "902",
+        "serial_number": 2,
+        "source": "示例卷",
+        "question_type": "single_choice",
+        "stem_md": "设 $f(x)=x^{2}$，则 $f'(1)=$（　）。",
+        "options": [
+          {
+            "id": "opt-a",
+            "label": "A",
+            "content_md": "$1$"
+          },
+          {
+            "id": "opt-b",
+            "label": "B",
+            "content_md": "$2$"
+          },
+          {
+            "id": "opt-c",
+            "label": "C",
+            "content_md": "$3$"
+          },
+          {
+            "id": "opt-d",
+            "label": "D",
+            "content_md": "$4$"
+          }
+        ],
+        "answer": {
+          "option_ids": [
+            "opt-b"
+          ]
+        },
+        "explanation_md": "$f'(x)=2x$，故 $f'(1)=2$，选 B。"
+      },
+      "categoryIds": [
+        902
+      ],
+      "classification": [
+        {
+          "id": "902",
+          "path": [
+            "高等数学（示例）",
+            "一元函数微分学"
+          ],
+          "source": "示例分类"
+        }
+      ],
+      "source": "示例卷（虚构题目，非任何真题）",
+      "contentHash": "f9d7ca766f8ec949ff148fb6abffc4ccce3d8a01013a233b77e04c8b3b0ff386",
+      "resources": {},
+      "resourceNotes": []
+    },
+    {
+      "id": "cxyonly:2003",
+      "year": 2003,
+      "papers": [
+        "示例卷（虚构）"
+      ],
+      "type": "fill",
+      "displayOptions": [],
+      "serial": 3,
+      "document": {
+        "format_version": 1,
+        "question_id": 2003,
+        "version_id": 3,
+        "category_id": "903",
+        "serial_number": 3,
+        "source": "示例卷",
+        "question_type": "fill",
+        "stem_md": "$\\displaystyle\\int_{0}^{1} 2x\\,\\mathrm{d}x = $ ______。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$1$"
+        },
+        "explanation_md": "$\\int_{0}^{1}2x\\,\\mathrm{d}x=\\big[x^{2}\\big]_{0}^{1}=1$。"
+      },
+      "categoryIds": [
+        903
+      ],
+      "classification": [
+        {
+          "id": "903",
+          "path": [
+            "高等数学（示例）",
+            "一元函数积分学"
+          ],
+          "source": "示例分类"
+        }
+      ],
+      "source": "示例卷（虚构题目，非任何真题）",
+      "contentHash": "ce9689a6dd32187ec36698d5e8699f38eac268477c6d55080af2b7c99a4a3ebb",
+      "resources": {},
+      "resourceNotes": []
+    },
+    {
+      "id": "cxyonly:2004",
+      "year": 2004,
+      "papers": [
+        "示例卷（虚构）"
+      ],
+      "type": "essay",
+      "displayOptions": [],
+      "serial": 4,
+      "document": {
+        "format_version": 1,
+        "question_id": 2004,
+        "version_id": 4,
+        "category_id": "911",
+        "serial_number": 4,
+        "source": "示例卷",
+        "question_type": "essay",
+        "stem_md": "设 $A=\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$，求 $\\det A$。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$-2$"
+        },
+        "explanation_md": "$\\det A=1\\cdot 4-2\\cdot 3=-2$。"
+      },
+      "categoryIds": [
+        911
+      ],
+      "classification": [
+        {
+          "id": "911",
+          "path": [
+            "线性代数（示例）",
+            "行列式与矩阵"
+          ],
+          "source": "示例分类"
+        }
+      ],
+      "source": "示例卷（虚构题目，非任何真题）",
+      "contentHash": "83585ac2ce60901693aeb23ee81bdc569cb029c9e10f26e50a027e1fd9782441",
+      "resources": {},
+      "resourceNotes": []
+    },
+    {
+      "id": "cxyonly:2005",
+      "year": 2005,
+      "papers": [
+        "示例卷（虚构）"
+      ],
+      "type": "single_choice",
+      "displayOptions": [
+        {
+          "id": "opt-a",
+          "label": "A",
+          "content_md": "$-2$"
+        },
+        {
+          "id": "opt-b",
+          "label": "B",
+          "content_md": "$0$"
+        },
+        {
+          "id": "opt-c",
+          "label": "C",
+          "content_md": "$2$"
+        },
+        {
+          "id": "opt-d",
+          "label": "D",
+          "content_md": "不存在"
+        }
+      ],
+      "serial": 5,
+      "document": {
+        "format_version": 1,
+        "question_id": 2005,
+        "version_id": 5,
+        "category_id": "902",
+        "serial_number": 5,
+        "source": "示例卷",
+        "question_type": "single_choice",
+        "stem_md": "函数 $f(x)=x^{3}-3x$ 的极大值为（　）。",
+        "options": [
+          {
+            "id": "opt-a",
+            "label": "A",
+            "content_md": "$-2$"
+          },
+          {
+            "id": "opt-b",
+            "label": "B",
+            "content_md": "$0$"
+          },
+          {
+            "id": "opt-c",
+            "label": "C",
+            "content_md": "$2$"
+          },
+          {
+            "id": "opt-d",
+            "label": "D",
+            "content_md": "不存在"
+          }
+        ],
+        "answer": {
+          "option_ids": [
+            "opt-c"
+          ]
+        },
+        "explanation_md": "$f'(x)=3x^{2}-3=0$ 得 $x=\\pm 1$。$f''(x)=6x$，$f''(-1)<0$，故 $x=-1$ 为极大值点，$f(-1)=2$，选 C。"
+      },
+      "categoryIds": [
+        902
+      ],
+      "classification": [
+        {
+          "id": "902",
+          "path": [
+            "高等数学（示例）",
+            "一元函数微分学"
+          ],
+          "source": "示例分类"
+        }
+      ],
+      "source": "示例卷（虚构题目，非任何真题）",
+      "contentHash": "7280da27696ad76cf71ffbdfc062ac69819607b77d1744e139d0cec6e47c816f",
+      "resources": {},
+      "resourceNotes": []
+    },
+    {
+      "id": "cxyonly:2006",
+      "year": 2006,
+      "papers": [
+        "示例卷（虚构）"
+      ],
+      "type": "single_choice",
+      "displayOptions": [
+        {
+          "id": "opt-a",
+          "label": "A",
+          "content_md": "$0$"
+        },
+        {
+          "id": "opt-b",
+          "label": "B",
+          "content_md": "$1$"
+        },
+        {
+          "id": "opt-c",
+          "label": "C",
+          "content_md": "$-1$"
+        },
+        {
+          "id": "opt-d",
+          "label": "D",
+          "content_md": "$2$"
+        }
+      ],
+      "serial": 6,
+      "document": {
+        "format_version": 1,
+        "question_id": 2006,
+        "version_id": 6,
+        "category_id": "901",
+        "serial_number": 6,
+        "source": "示例卷",
+        "question_type": "single_choice",
+        "stem_md": "原创测试题：求 $x^2$ 的导数。",
+        "options": [
+          {
+            "id": "opt-a",
+            "label": "A",
+            "content_md": "$0$"
+          },
+          {
+            "id": "opt-b",
+            "label": "B",
+            "content_md": "$1$"
+          },
+          {
+            "id": "opt-c",
+            "label": "C",
+            "content_md": "$-1$"
+          },
+          {
+            "id": "opt-d",
+            "label": "D",
+            "content_md": "$2$"
+          }
+        ],
+        "answer": {
+          "option_ids": [
+            "opt-b"
+          ]
+        },
+        "explanation_md": "$\\sin\\dfrac{\\pi}{2}=1$，选 B。",
+        "asset_refs": [
+          "images/demo-figure.png"
+        ],
+        "resources": {
+          "images/demo-figure.png": "images/demo-figure.png"
+        },
+        "resourceNotes": [
+          "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+        ]
+      },
+      "categoryIds": [
+        901
+      ],
+      "classification": [
+        {
+          "id": "901",
+          "path": [
+            "高等数学（示例）",
+            "极限与连续"
+          ],
+          "source": "示例分类"
+        }
+      ],
+      "source": "示例卷（虚构题目，非任何真题）",
+      "contentHash": "e04762e86f8a0b12a179284f70b20629779da82c74b0b5e2b4a2eca64b1372fe",
+      "resources": {},
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-demo:vol01:ch01:group01:single_choice:q001",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "single_choice",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^2$ 的导数。",
+        "options": [
+          {
+            "id": "opt-a",
+            "label": "A",
+            "content_md": "$y=\\sin x$"
+          },
+          {
+            "id": "opt-b",
+            "label": "B",
+            "content_md": "$y=\\cos x$"
+          },
+          {
+            "id": "opt-c",
+            "label": "C",
+            "content_md": "$y=\\tan x$"
+          },
+          {
+            "id": "opt-d",
+            "label": "D",
+            "content_md": "$y=\\ln x$"
+          }
+        ],
+        "answer": {
+          "option_ids": [
+            "opt-a"
+          ]
+        },
+        "explanation_md": "图像过原点、以 $2\\pi$ 为周期，在 $x=\\frac{\\pi}{2}$ 处取最大值 $1$，故为 $y=\\sin x$，选 A。",
+        "asset_refs": [
+          "images/demo-figure.png"
+        ]
+      },
+      "displayOptions": [
+        {
+          "id": "opt-a",
+          "label": "A",
+          "content_md": "$y=\\sin x$"
+        },
+        {
+          "id": "opt-b",
+          "label": "B",
+          "content_md": "$y=\\cos x$"
+        },
+        {
+          "id": "opt-c",
+          "label": "C",
+          "content_md": "$y=\\tan x$"
+        },
+        {
+          "id": "opt-d",
+          "label": "D",
+          "content_md": "$y=\\ln x$"
+        }
+      ],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-demo:vol01:ch01:group01:fill_blank:q002",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "fill",
+      "serial": 2,
+      "originalNumber": "2",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "$\\displaystyle\\int_{0}^{\\pi/2}\\cos x\\,\\mathrm{d}x = $ ______。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$1$"
+        },
+        "explanation_md": "$\\int_{0}^{\\pi/2}\\cos x\\,\\mathrm{d}x=\\big[\\sin x\\big]_{0}^{\\pi/2}=1$。",
+        "asset_refs": []
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "45d5ba66a64361ba9be273dddf5af09a0eaf623f09cb6db6213405cd4f849463",
+      "selectedSubquestions": [],
+      "resourceNotes": []
+    },
+    {
+      "id": "lilin880:edition-demo:vol01:ch02:group01:essay:q001",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第2章 综合练习",
+      "groupLabel": "示例分组二",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "求曲线 $y=x^{2}$ 在点 $(1,1)$ 处的切线方程。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$y=2x-1$"
+        },
+        "explanation_md": "$y'=2x$，在 $x=1$ 处斜率为 $2$，切线为 $y-1=2(x-1)$，即 $y=2x-1$。",
+        "asset_refs": []
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch02:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第2章 综合练习",
+            "示例分组二"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "9d63aabf848e6d0e0577dd1c2762fd6664c400d24e538c222b3f997474d1eedd",
+      "selectedSubquestions": [],
+      "resourceNotes": []
+    },
+    {
+      "id": "lilin880:edition-demo:vol01:ch02:group01:single_choice:q002",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "single_choice",
+      "serial": 2,
+      "originalNumber": "2",
+      "chapterLabel": "第2章 综合练习",
+      "groupLabel": "示例分组二",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "设 $A$ 为 $3$ 阶矩阵且 $\\det A=2$，则 $\\det(2A)=$（　）。",
+        "options": [
+          {
+            "id": "opt-a",
+            "label": "A",
+            "content_md": "$4$"
+          },
+          {
+            "id": "opt-b",
+            "label": "B",
+            "content_md": "$8$"
+          },
+          {
+            "id": "opt-c",
+            "label": "C",
+            "content_md": "$16$"
+          },
+          {
+            "id": "opt-d",
+            "label": "D",
+            "content_md": "$2$"
+          }
+        ],
+        "answer": {
+          "option_ids": [
+            "opt-c"
+          ]
+        },
+        "explanation_md": "$\\det(kA)=k^{n}\\det A$，$n=3$，故 $\\det(2A)=2^{3}\\cdot 2=16$，选 C。",
+        "asset_refs": []
+      },
+      "displayOptions": [
+        {
+          "id": "opt-a",
+          "label": "A",
+          "content_md": "$4$"
+        },
+        {
+          "id": "opt-b",
+          "label": "B",
+          "content_md": "$8$"
+        },
+        {
+          "id": "opt-c",
+          "label": "C",
+          "content_md": "$16$"
+        },
+        {
+          "id": "opt-d",
+          "label": "D",
+          "content_md": "$2$"
+        }
+      ],
+      "categoryIds": [
+        "demo:vol01:ch02:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第2章 综合练习",
+            "示例分组二"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "70d7699d4c6dae60db98baa6158ecbe9a1df679100665a9d1aa467188ecf7a4f",
+      "selectedSubquestions": [],
+      "resourceNotes": []
+    },
+    {
+      "id": "cxyonly:900001",
+      "year": 2001,
+      "papers": [
+        "示例卷（虚构）"
+      ],
+      "type": "essay",
+      "displayOptions": [],
+      "serial": 1,
+      "document": {
+        "stem_md": "求 $x^3$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$3x^2$"
+        },
+        "explanation_md": "由幂函数求导公式得到。"
+      },
+      "categoryIds": [
+        "demo:selected"
+      ],
+      "classification": [
+        {
+          "id": "demo:selected",
+          "path": [
+            "精选示例"
+          ],
+          "source": "示例分类"
+        }
+      ],
+      "source": "精选虚构示例",
+      "contentHash": "a88235ebfe5006cc3b94a8a57003604b62521eff3105762f9f5ee718a3f0664f",
+      "resources": {},
+      "resourceNotes": [],
+      "bankId": "yanxuan"
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q001",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^2$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$2x^1$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q002",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^3$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$3x^2$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q003",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^4$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$4x^3$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q004",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^5$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$5x^4$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q005",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^6$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$6x^5$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q006",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^7$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$7x^6$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q007",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^8$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$8x^7$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q008",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^9$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$9x^8$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q009",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^10$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$10x^9$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q010",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^11$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$11x^10$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q011",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^12$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$12x^11$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q012",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^13$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$13x^12$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q013",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^14$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$14x^13$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q014",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^15$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$15x^14$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q015",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^16$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$16x^15$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q016",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^17$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$17x^16$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q017",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^18$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$18x^17$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q018",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^19$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$19x^18$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q019",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^20$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$20x^19$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q020",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^21$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$21x^20$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q021",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^22$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$22x^21$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q022",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^23$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$23x^22$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q023",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^24$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$24x^23$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q024",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^25$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$25x^24$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q025",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^26$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$26x^25$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q026",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^27$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$27x^26$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q027",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^28$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$28x^27$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q028",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^29$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$29x^28$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q029",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^30$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$30x^29$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    },
+    {
+      "id": "lilin880:edition-fixture:vol01:ch01:group01:essay:q030",
+      "bankId": "lilin880",
+      "year": null,
+      "papers": [],
+      "type": "essay",
+      "serial": 1,
+      "originalNumber": "1",
+      "chapterLabel": "第1章 基础练习",
+      "groupLabel": "示例分组一",
+      "source": "示例分册（虚构题目，非任何出版物）",
+      "document": {
+        "stem_md": "原创测试题：求 $x^31$ 的导数。",
+        "options": [],
+        "answer": {
+          "reference_answer_md": "$31x^30$"
+        },
+        "explanation_md": "使用幂函数求导公式。"
+      },
+      "displayOptions": [],
+      "categoryIds": [
+        "demo:vol01:ch01:group01"
+      ],
+      "classification": [
+        {
+          "path": [
+            "分册题库（示例）",
+            "第1章 基础练习",
+            "示例分组一"
+          ],
+          "source": "示例章节"
+        }
+      ],
+      "resources": {},
+      "contentHash": "886e8dcbff22b068a1341c02ed82ba9bd28796399c361f9fdd0862abb4ab1b6d",
+      "selectedSubquestions": [],
+      "resourceNotes": [
+        "题面配图为模板自带的虚构示意图，可替换为你自己的图片。"
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": 900,
+      "parent_id": null,
+      "name": "高等数学（示例）",
+      "display_order": 1024,
+      "path": [
+        "高等数学（示例）"
+      ]
+    },
+    {
+      "id": 901,
+      "parent_id": 900,
+      "name": "极限与连续",
+      "display_order": 2048,
+      "path": [
+        "高等数学（示例）",
+        "极限与连续"
+      ]
+    },
+    {
+      "id": 902,
+      "parent_id": 900,
+      "name": "一元函数微分学",
+      "display_order": 3072,
+      "path": [
+        "高等数学（示例）",
+        "一元函数微分学"
+      ]
+    },
+    {
+      "id": 903,
+      "parent_id": 900,
+      "name": "一元函数积分学",
+      "display_order": 4096,
+      "path": [
+        "高等数学（示例）",
+        "一元函数积分学"
+      ]
+    },
+    {
+      "id": 910,
+      "parent_id": null,
+      "name": "线性代数（示例）",
+      "display_order": 5120,
+      "path": [
+        "线性代数（示例）"
+      ]
+    },
+    {
+      "id": 911,
+      "parent_id": 910,
+      "name": "行列式与矩阵",
+      "display_order": 6144,
+      "path": [
+        "线性代数（示例）",
+        "行列式与矩阵"
+      ]
+    },
+    {
+      "id": "demo:vol01",
+      "parent_id": null,
+      "name": "分册题库（示例）",
+      "display_order": 8192,
+      "path": [
+        "分册题库（示例）"
+      ],
+      "bankId": "lilin880"
+    },
+    {
+      "id": "demo:vol01:ch01",
+      "parent_id": "demo:vol01",
+      "name": "第1章 基础练习",
+      "display_order": 8193,
+      "path": [
+        "分册题库（示例）",
+        "第1章 基础练习"
+      ],
+      "bankId": "lilin880"
+    },
+    {
+      "id": "demo:vol01:ch01:group01",
+      "parent_id": "demo:vol01:ch01",
+      "name": "示例分组一",
+      "display_order": 8194,
+      "path": [
+        "分册题库（示例）",
+        "第1章 基础练习",
+        "示例分组一"
+      ],
+      "bankId": "lilin880"
+    },
+    {
+      "id": "demo:vol01:ch02",
+      "parent_id": "demo:vol01",
+      "name": "第2章 综合练习",
+      "display_order": 8195,
+      "path": [
+        "分册题库（示例）",
+        "第2章 综合练习"
+      ],
+      "bankId": "lilin880"
+    },
+    {
+      "id": "demo:vol01:ch02:group01",
+      "parent_id": "demo:vol01:ch02",
+      "name": "示例分组二",
+      "display_order": 8196,
+      "path": [
+        "分册题库（示例）",
+        "第2章 综合练习",
+        "示例分组二"
+      ],
+      "bankId": "lilin880"
+    },
+    {
+      "id": "demo:selected",
+      "parent_id": null,
+      "name": "精选示例",
+      "bankId": "yanxuan",
+      "path": [
+        "精选示例"
+      ]
+    }
+  ],
+  "pending880": 0
+}

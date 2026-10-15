@@ -11,4 +11,6 @@ function keyboard(){const viewport=window.visualViewport;document.body.classList
 
 const mobileTop=document.querySelector('.mobile-top');if(mobileTop&&typeof ResizeObserver!=='undefined')new ResizeObserver(()=>document.documentElement.style.setProperty('--topbar-h',mobileTop.getBoundingClientRect().height+'px')).observe(mobileTop);
 
+for(const id of ['offline-status','sync-status']){const el=$('#'+id),update=()=>{el.title=el.textContent;el.setAttribute('aria-label',el.textContent)};new MutationObserver(update).observe(el,{childList:true,characterData:true,subtree:true});update()}
+
 $('#banks').addEventListener('click',e=>{if(e.target.closest('[data-bank]')&&matchMedia('(max-width:900px)').matches)$('#drawer-shade').click()});

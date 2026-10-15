@@ -31,7 +31,7 @@ if(missing.length){
 }
 const cloudEnv=env.get('CLOUDBASE_ENV'),fnEnv=env.get('MATH2_ENV_ID');
 const region=env.get('CLOUDBASE_REGION')||env.get('MATH2_REGION')||'ap-shanghai';
-if(cloudEnv!==fnEnv)console.warn('[deploy] 警告：CLOUDBASE_ENV('+cloudEnv+') 与 MATH2_ENV_ID('+fnEnv+') 不一致；通常应相同。');
+if(cloudEnv!==fnEnv)throw Error('[deploy] 警告：CLOUDBASE_ENV('+cloudEnv+') 与 MATH2_ENV_ID('+fnEnv+') 不一致；通常应相同。');
 
 const cliRoot=path.join(root,'node_modules/@cloudbase/cli');
 if(!fs.existsSync(cliRoot)){console.error('[deploy] 未找到 @cloudbase/cli，请先运行 npm ci。');process.exit(1);}
@@ -42,7 +42,7 @@ function tcb(tcbArgs,{allowFail=false}={}){
   if(dry){console.log('  [dry-run] tcb -e '+cloudEnv+' -r '+region+' '+tcbArgs.join(' '));return {status:0,stdout:'',dry:true};}
   console.log('  $ tcb -e <env> -r '+region+' '+tcbArgs.join(' '));
   const r=spawnSync(process.execPath,full,{cwd:root,stdio:'inherit',encoding:'utf8'});
-  if(r.status!==0&&!allowFail){console.error('[deploy] 命令失败：tcb '+tcbArgs.join(' '));process.exit(1);}
+  if(r.status!==0&&!allowFail)throw Error('[deploy] 命令失败：tcb '+tcbArgs.join(' '));
   return r;
 }
 function node(script,scriptArgs=[]){
@@ -83,7 +83,7 @@ function ask(q){const rl=readline.createInterface({input:process.stdin,output:pr
  // 4) Database init (idempotent) --------------------------------------------
  console.log('\n[deploy] 2/4 初始化数据库 schema（幂等）');
  if(!fs.existsSync(path.join(root,'schema.sql'))){console.error('[deploy] 缺少 schema.sql，请先运行构建步骤。');process.exit(1);}
- node('sql.cjs',['schema.sql']);
+ node('practice-migration.cjs',['--schema','math2_private','--execute','--allow-production','--env',cloudEnv]);
 
  // 5) Deploy function (inject env vars into cloudbaserc, then restore) -------
  console.log('\n[deploy] 3/4 部署云函数与静态托管');

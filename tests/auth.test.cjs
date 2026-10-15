@@ -19,10 +19,12 @@ test('server validates verified provider response and denies other accounts',asy
  global.fetch=async()=>new Response(JSON.stringify({sub:UID,email:'someone@example.com',status:'ACTIVE'}));
  assert.equal((await handler.main({action:'manifest',accessToken:'test-token-not-real'})).error,'ACCESS_DENIED');
  global.fetch=okUser;
- // v2 clients receive the full v2 manifest (bank + every image).
- const r=await handler.main({action:'manifest',clientVersion:2,accessToken:'test-token-not-real'});
+ // Current clients receive the complete three-partition manifest.
+ const r=await handler.main({action:'manifest',clientVersion:3,accessToken:'test-token-not-real'});
  assert.equal(r.ok,true);assert.equal(r.manifest.files.length,manifest.files.length);assert.ok(r.manifest.files.some(f=>f.path==='data/bank.json'));
  // legacy clients receive the legacy manifest (old bank + only the images it references).
+ const compat=await handler.main({action:'asset',path:'data/bank.json',clientVersion:2,accessToken:'test-token-not-real'});
+ const v2=JSON.parse(Buffer.from(compat.data,'base64'));assert.equal(v2.questions.some(q=>q.bankId==='yanxuan'),false);assert.equal(v2.questions.length,bank.questions.filter(q=>q.bankId!=='yanxuan').length);
  const legacyManifest=require('../functions/math2-api/legacy-assets-manifest.json');
  const rl=await handler.main({action:'manifest',accessToken:'test-token-not-real'});
  assert.equal(rl.ok,true);assert.equal(rl.manifest.files.length,legacyManifest.files.length);
@@ -33,16 +35,16 @@ test('legacy clients retain their bank while v2 clients receive both partitions'
  global.fetch=okUser;
  const auth={accessToken:'test-token-not-real',action:'asset',path:'data/bank.json'};
  const legacy=JSON.parse(Buffer.from((await handler.main(auth)).data,'base64'));
- const next=JSON.parse(Buffer.from((await handler.main({...auth,clientVersion:2})).data,'base64'));
+ const next=JSON.parse(Buffer.from((await handler.main({...auth,clientVersion:3})).data,'base64'));
  assert.equal(legacy.questions.length,legacyCount);
  assert.equal(next.questions.filter(q=>q.bankId==='lilin880').length,part2Count);
- assert.equal((await handler.main({action:'manifest',clientVersion:2})).error,'AUTH_REQUIRED');
+ assert.equal((await handler.main({action:'manifest',clientVersion:3})).error,'AUTH_REQUIRED');
 }finally{global.fetch=old}});
 
 test('protected batches validate identity, paths, limits and return exact bytes',async()=>{const handler=require('../functions/math2-api/handler.cjs'),old=global.fetch;try{
- assert.equal((await handler.main({action:'assetBatch',clientVersion:2,paths:['data/bank.json']})).error,'AUTH_REQUIRED');
+ assert.equal((await handler.main({action:'assetBatch',clientVersion:3,paths:['data/bank.json']})).error,'AUTH_REQUIRED');
  global.fetch=okUser;
- const auth={accessToken:'test-token-not-real',clientVersion:2,action:'assetBatch'};
+ const auth={accessToken:'test-token-not-real',clientVersion:3,action:'assetBatch'};
  assert.equal((await handler.main({...auth,paths:['../../handler.cjs']})).error,'NOT_FOUND');
  assert.equal((await handler.main({...auth,paths:Array(17).fill('data/bank.json')})).error,'NOT_FOUND');
  const r=await handler.main({...auth,paths:['data/bank.json']});

@@ -14,7 +14,7 @@ const bankPath=path.join(root,'private/data/bank.json');
 if(fs.existsSync(bankPath)&&!force){
   try{const existing=JSON.parse(fs.readFileSync(bankPath,'utf8'));
     if(existing&&existing.mode!=='demo'){console.error('检测到 private/data/bank.json 不是示例题库（mode='+existing.mode+'）。为保护你已导入的题库，未覆盖。如确要重建示例题库，请加 --force。');process.exit(1);}
-  }catch{/* unreadable file: fall through and regenerate */}
+  }catch(error){console.error('现有题库无法读取，停止以保护文件：'+error.message);process.exit(1);}
 }
 
 // ---- minimal PNG encoder (no dependencies) ------------------------------------
@@ -78,6 +78,8 @@ const questions=[
  part2({ch:'02',group:'01'},'essay',1,1,'第2章 综合练习','示例分组二','demo:vol01:ch02:group01',{stem_md:'求曲线 $y=x^{2}$ 在点 $(1,1)$ 处的切线方程。',options:[],answer:{reference_answer_md:'$y=2x-1$'},explanation_md:"$y'=2x$，在 $x=1$ 处斜率为 $2$，切线为 $y-1=2(x-1)$，即 $y=2x-1$。"}),
  part2({ch:'02',group:'01'},'single_choice',2,2,'第2章 综合练习','示例分组二','demo:vol01:ch02:group01',{stem_md:'设 $A$ 为 $3$ 阶矩阵且 $\\det A=2$，则 $\\det(2A)=$（　）。',options:[{id:'opt-a',label:'A',content_md:'$4$'},{id:'opt-b',label:'B',content_md:'$8$'},{id:'opt-c',label:'C',content_md:'$16$'},{id:'opt-d',label:'D',content_md:'$2$'}],answer:{option_ids:['opt-c']},explanation_md:'$\\det(kA)=k^{n}\\det A$，$n=3$，故 $\\det(2A)=2^{3}\\cdot 2=16$，选 C。'}),
 ];
+categories.push({id:'demo:selected',parent_id:null,name:'精选示例',bankId:'yanxuan',path:['精选示例']});
+questions.push({...structuredClone(questions[0]),id:'cxyonly:900001',bankId:'yanxuan',categoryIds:['demo:selected'],classification:[{id:'demo:selected',path:['精选示例'],source:'示例分类'}],source:'精选虚构示例',document:{stem_md:'求 $x^3$ 的导数。',options:[],answer:{reference_answer_md:'$3x^2$'},explanation_md:'由幂函数求导公式得到。'},type:'essay',displayOptions:[],resources:{}});
 for(const q of questions)q.contentHash=crypto.createHash('sha256').update(JSON.stringify({id:q.id,document:q.document})).digest('hex');
 
 const examQuestions=questions.filter(q=>(q.bankId||'exam')==='exam');
@@ -90,6 +92,6 @@ fs.mkdirSync(path.join(root,'private/data'),{recursive:true});
 fs.mkdirSync(path.join(root,'private/images'),{recursive:true});
 fs.writeFileSync(path.join(root,'private/images/demo-figure.png'),demoFigure());
 // Full bank (v2 clients): both partitions. Legacy bank (old clients): exam partition only.
-fs.writeFileSync(bankPath,JSON.stringify(bank('demo-bank-v1',questions,categories)));
+fs.writeFileSync(bankPath,JSON.stringify(bank('demo-bank-v2',questions,categories)));
 fs.writeFileSync(path.join(root,'private/data/legacy-bank.json'),JSON.stringify(bank('demo-legacy-v1',examQuestions,examCategories)));
-console.log(JSON.stringify({mode:'demo',total:questions.length,exam:examQuestions.length,part2:questions.length-examQuestions.length,examCategories:examCategories.length,part2Categories:part2Categories.length,images:['demo-figure.png'],ids:questions.map(q=>q.id)},null,2));
+console.log(JSON.stringify({mode:'demo',total:questions.length,exam:examQuestions.length,part2:questions.filter(q=>q.bankId==='lilin880').length,selected:questions.filter(q=>q.bankId==='yanxuan').length,examCategories:examCategories.length,part2Categories:part2Categories.length,images:['demo-figure.png'],ids:questions.map(q=>q.id)},null,2));

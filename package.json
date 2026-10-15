@@ -1,6 +1,6 @@
 {
   "name": "math2-practice",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Self-hosted, single-user math practice web app on Tencent CloudBase: offline-first PWA front end plus a protected cloud function that serves your question bank and syncs study records. Ships with a fictional demo bank; import your own legally-licensed content.",
   "license": "MIT",
   "private": true,
@@ -16,11 +16,14 @@
     "serve:mock": "node scripts/serve-mock.cjs",
     "install:local": "node scripts/install.cjs",
     "deploy": "node scripts/deploy.cjs",
-    "test": "node --test tests/engine.test.cjs tests/storage.test.cjs tests/auth.test.cjs tests/healthcheck.test.cjs tests/banks.test.cjs",
+    "test": "node --test tests/engine.test.cjs tests/storage.test.cjs tests/healthcheck.test.cjs tests/auth.test.cjs tests/banks.test.cjs tests/practice.test.cjs tests/backend-split.test.cjs tests/daily-data.test.cjs tests/daily-heatmap.test.cjs tests/practice-integration.test.cjs tests/recovery.test.cjs tests/import.test.cjs",
     "test:banks": "node --test tests/banks.test.cjs",
     "test:browser": "node tests/browser.test.cjs",
     "test:compat": "node tests/browser-compat.cjs",
-    "test:banks-browser": "node tests/banks-browser.cjs"
+    "test:banks-browser": "node tests/banks-browser.cjs",
+    "validate:bank": "node scripts/validate-bank.cjs",
+    "import:bank": "node scripts/import-bank.cjs",
+    "test:opensource-browser": "node tests/opensource-browser.cjs"
   },
   "dependencies": {
     "@cloudbase/js-sdk": "3.10.0",

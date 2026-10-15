@@ -7,7 +7,14 @@ async function verifiedResponse(file,response){
  const headers=new Headers(response.headers);for(const name of ['Content-Disposition','Content-Length','Content-Encoding','Transfer-Encoding'])headers.delete(name);
  headers.set('Content-Type',file.type);return new Response(bytes,{status:200,headers});
 }
-self.addEventListener('install',e=>e.waitUntil((async()=>{const c=await caches.open(CACHE);for(const f of FILES)await c.put(f.path,await verifiedResponse(f,await fetchShell(f.path)));if(!self.registration.active)await self.skipWaiting();})()));
+self.addEventListener('install',e=>e.waitUntil((async()=>{
+ const c=await caches.open(CACHE);let next=0;
+ // Bound concurrency so one network round trip is not paid 57 times in series.
+ await Promise.all(Array.from({length:Math.min(6,FILES.length)},async()=>{
+  while(next<FILES.length){const f=FILES[next++];await c.put(f.path,await verifiedResponse(f,await fetchShell(f.path)));}
+ }));
+ if(!self.registration.active)await self.skipWaiting();
+})()));
 self.addEventListener('activate',e=>e.waitUntil((async()=>{for(const key of await caches.keys())if(key.startsWith('math2-shell-')&&key!==CACHE)await caches.delete(key);await self.clients.claim();})()));
 self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(u.origin!==location.origin||e.request.method!=='GET')return;
  if(u.pathname.startsWith('/__private/')){e.respondWith(new Response('Forbidden',{status:403}));return;}

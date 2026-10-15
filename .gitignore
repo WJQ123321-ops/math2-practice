@@ -29,3 +29,9 @@ schema.sql
 
 # Author-only deployment record
 deployment.private.json
+
+# Private generated bank compatibility metadata
+functions/math2-api/v2-assets-manifest.json
+functions/math2-api/goal-bank-history.json
+work/
+*.private.json

@@ -49,7 +49,7 @@ run('构建前端与云函数产物','build.cjs',{CLOUDBASE_ENV:cloudEnv||'local
 if(has('--skip-test')){console.log('\n[install] 跳过测试（--skip-test）。');}
 else{
   console.log('\n[install] 运行 Node 测试套件');
-  const t=spawnSync(process.execPath,['--test','tests/engine.test.cjs','tests/storage.test.cjs','tests/auth.test.cjs','tests/healthcheck.test.cjs','tests/banks.test.cjs'],{cwd:root,stdio:'inherit'});
+  const t=spawnSync(process.execPath,JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8')).scripts.test.split(' ').slice(1),{cwd:root,stdio:'inherit'});
   if(t.status!==0)fail('测试未通过（退出码 '+t.status+'）。');
 }
 

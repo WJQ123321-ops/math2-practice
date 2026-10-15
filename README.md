@@ -1,183 +1,107 @@
-# 数二练习本（自托管 · 开源模板）
+# 数二练习本 · 自己的做题网站
 
-一个**单用户、自托管**的考研数学练习网站模板：离线优先的 PWA 前端 + 一个受保护的腾讯云 CloudBase 云函数。云函数负责鉴权、下发题库资源、同步与恢复学习记录。仓库自带一套**完全虚构的示例题库**，开箱即可跑通全部功能；正式上线前请导入你自己拥有合法权限的题库。
+离线优先的个人数学练习网站。每个人可以部署一份，导入自己的题目，独立保存笔记、错题和每日进度。
 
-> 本项目是个人使用架构：**每位部署者使用自己的腾讯云环境**，每个环境只允许一个登记账号访问。它不是多人共享服务。
+**开源的是网站程序，不是作者的题库。** 仓库只生成 11 道虚构示例题，真实题目、图片、账号配置和学习记录不在仓库里。程序采用 [MIT](LICENSE)，第三方组件见 [NOTICE.md](NOTICE.md)。
 
----
+## 现在有哪些功能
 
-## 免责声明（请先阅读）
+- 分类练习、分册练习、精选练习三个分区；按章节、年份、题型和学习状态筛选。
+- Markdown / LaTeX 题面与解析、图片放大、笔记、收藏、错题、学习状态和续练位置。
+- 每日完成记录、每日目标、热力图；离线操作联网后同步。
+- 草稿板：鼠标、触摸、触控笔书写、橡皮、撤销；草稿随切题清空，不作为长期笔记保存。
+- PWA 离线缓存、升级提示、备份导出、冲突核对与恢复、历史题保留。
 
-- 本项目是**非官方**的学习辅助工具，与考试主管部门、任何出版社、腾讯云及其它服务商**无隶属或背书关系**。
-- 题目、解析以及任何 AI 生成内容（如有）**可能存在错误**，本项目**不承诺**考试成绩或学习效果。
-- 仓库**仅包含虚构示例题目**，不包含任何真题、书扫图片或出版物内容。第三方内容（你自行导入的题目、图片、解析）的权利归**原权利人**所有；**使用者须自行确保拥有合法使用与再分发权限**。请勿假设任何出版题库可以再分发。
-- 你导入的题库**只留在本地**：`private/`、`functions/math2-api/assets/`、`schema.sql`、`.env` 均被 git 忽略，**不会**也不会被 `git add -f` 提交。公开仓库中因此不含任何真实题目或书扫图片——**请不要**把这些目录加入版本库、不要关闭相关 ignore 规则、不要把题库内容贴进 Issue/PR/讨论。
-- 部署者**自行管理**账号、数据安全、访问权限与备份。云函数仅允许 `.env` 中登记的单个 UID/邮箱访问，但数据安全最终由部署者负责。
-- 腾讯云、模型接口、域名等第三方服务**可能收费**，费用由**部署者自行承担**。
-- 本项目按 MIT 许可证「**按现状**」提供，不含任何明示或默示担保。详见 [`LICENSE`](LICENSE) 与 [`NOTICE.md`](NOTICE.md)。
+架构是 **一人一套 CloudBase 环境**，服务端按 UID + 邮箱只允许一个账号。不是公共多人注册服务；GitHub Pages 单独托管前端不能替代云函数与数据库。
 
-免责声明**不能替代**权限控制、隐私清理与内容许可检查。
+## 十分钟本地体验
 
----
+安装 Node.js 20.19 或以上版本，然后：
 
-## 技术栈与结构
-
-- **前端**：原生 ES Modules + PWA（Service Worker 离线缓存）+ IndexedDB（本地记录与待同步队列）。公式渲染 KaTeX，Markdown 渲染 marked，HTML 净化 DOMPurify（均见 `public/vendor/`）。
-- **后端**：腾讯云 CloudBase 云函数 `functions/math2-api`（Node.js 20），用 esbuild 打包为单文件 `index.js`。题库与图片作为受保护资源随函数下发，**不进入静态托管**。
-- **数据库**：CloudBase PostgreSQL，私有 schema `math2_private`（`state` 单例状态表 + `restores` 恢复历史表），对 `anon`/`authenticated` 关闭直接访问。
-- **鉴权**：CloudBase 邮箱验证码登录；云函数再用固定 UID + 邮箱二次校验，只放行登记账号。
-
-```
-public/                 前端外壳、渲染库、PWA 资源（静态托管目录）
-functions/math2-api/    云函数：handler.cjs(入口逻辑) engine.cjs(同步引擎) assets/(生成)
-private/                题库与图片（git 忽略；示例题库由脚本生成，正式题库由你导入）
-scripts/                demo-bank / setup / build / serve / sql / install / deploy
-tests/                  Node 单元测试 + 可选浏览器测试
-docs/                   部署、Agent 安装、维护交接文档
-schema.sql              数据库结构（由 npm run setup 生成，空状态）
+```sh
+git clone https://github.com/WJQ123321-ops/math2-practice.git
+cd math2-practice
+npm ci
+npm run install:local
+npm run serve:mock
 ```
 
----
+打开 <http://127.0.0.1:8788>。无需云账号，示例题可以做，笔记和每日记录可保存。本地模拟服务只监听本机，数据写入 `private/.local-preview-state.json`，**不提供真实登录或跨设备云同步**。重要学习记录请在应用里导出备份。模拟服务需要持续运行；停止后已完整缓存的页面仍可离线练习。
 
-## 快速开始（本地）
+`install:local` 会生成示例、校验资源、构建和运行单元测试；遇到正式题库会保留它。单独运行 `npm run serve` 只启动静态外壳，不能替代模拟服务或云端。
 
-前置：**Node.js ≥ 20.19**。本地流程不创建任何云资源、不联网部署。
+## 让任意编程 AI Agent 帮你搭建
 
-```bash
-npm ci                 # 安装依赖
-npm run demo-bank      # 生成虚构示例题库（private/data + 一张示例配图）
-npm run setup          # 生成受保护资源、清单与空数据库 schema.sql
-npm run build          # 构建前端与云函数产物（需要 CLOUDBASE_ENV，见下）
-npm test               # 运行 Node 测试套件（20 项）
-npm run serve          # 本地静态预览 http://127.0.0.1:8787（不含云同步）
+将这段话复制给能读写文件、运行命令的 Agent；没有预制题库包也能开始：
+
+```text
+请帮我搭建自己的做题网站，仓库是 https://github.com/WJQ123321-ops/math2-practice。
+先 clone，阅读 AGENTS.md、README.md、docs/AGENT_DEPLOY.md 和 docs/IMPORTING.md。
+先用虚构示例在本地跑通，并实际打开浏览器验证做题、笔记、每日完成和草稿板。
+我的题目材料由我提供，可能是 PDF、照片、Markdown 或 JSON；没有材料时先完成示例体验。
+请按导入指南提取题干、选项、答案、解析、分类和来源页码；保留原图和公式，
+不确定或缺图的题放入待核对清单，不猜答案，不把识别结果直接视为已核对。
+先整理少量代表题让我核对，再制作完整 bank.json，执行只读导入预检，
+随后在我已授权的导入范围内使用 --apply、setup、build，并在浏览器验收。
+部署使用我自己的 CloudBase 环境和账号，集中列出缺少的配置并指导我在本地填写。
+不要把密钥、邮箱、UID、题目原文或学习记录提交到 GitHub。
+我授权云端部署后，再预览命令并部署；如果本次已明确授权，不要重复索要授权。
+最后给我网址、导入统计、备份方式，以及实际验证结果和仍未验证的部分。
 ```
 
-### 不部署先做题：本地模拟云端（`serve:mock`）
+## 导入自己的题目
 
-`npm run serve` 只是静态外壳，题库要登录云端才能取到。想在**不部署、不联网**的情况下直接刷题：
+完整流程与可复制格式见 **[题库导入指南](docs/IMPORTING.md)**。没有绑定任何 AI 厂商，不需要网站内配置模型 API Key。
 
-```bash
-npm run serve:mock       # http://127.0.0.1:8788
+Agent 将你有权使用的材料整理成一个完整快照：
+
+```text
+my-bank/private/
+  data/bank.json
+  images/figure-001.png
 ```
 
-它在本机起一个假的云接口：题库与图片直接读 `private/`，登录一律放行，同步状态写在 `private/.local-preview-state.json`（git 忽略）。**与真实部署的差别**：不连腾讯云、无真实登录、没有跨设备同步——笔记仍存在浏览器 IndexedDB 里，但**不会**备份到云端，重要记录请用「备份与恢复 → 导出」。仅用于本地试用，**不要**把它当线上环境。
-
-一条命令完成上面 2–5 步：
-
-```bash
-node scripts/install.cjs
+```sh
+# 默认只检查，不写入
+npm run import:bank -- /absolute/path/my-bank/private/data/bank.json
+# 正式导入：备份旧 JSON，保留旧图片，再替换完整快照
+npm run import:bank -- /absolute/path/my-bank/private/data/bank.json --apply
+npm run setup
+npm run build
+npm run serve:mock
 ```
 
-> `npm run build` 需要环境 ID。本地预览/测试可先在 `.env` 写一个占位值（如 `CLOUDBASE_ENV=local-placeholder`）；`install.cjs` 在未配置时会自动用占位值构建并给出警告。**云同步功能必须配置真实环境并部署后才可用。**
+直接 `build` 前需要 `.env` 中的 `CLOUDBASE_ENV`；本地可填 `local-placeholder`。也可用 `npm run install:local -- --skip-demo` 完成 setup/build/测试。
 
-可选浏览器测试（需要本机 Microsoft Edge 或 Chrome，先完成 `demo-bank`+`setup`+`build`）：
+导入器不负责 OCR 或判断数学答案正确性。重复题号、缺分类、分类循环、无效选项答案、图片越界或缺图会失败。更新已有正式题库时，快照不能漏掉旧题；退役题放入 `archivedQuestions`，保留正文、分类和图片，学习记录仍可关联。
 
-```bash
-npm run test:browser        # 单分区：离线、保存、图片放大、移动端布局
-npm run test:banks-browser  # 双分区：笔记隔离、跨设备、章节遍历
-npm run test:compat         # 兼容/降级：无 SW、无 CacheStorage、旧 API、IndexedDB 不可用
-# 如用 Chrome：MATH2_BROWSER_CHANNEL=chrome npm run test:browser
+## 部署与更新
+
+见 [部署指南](docs/DEPLOYMENT.md) 和 [Agent 执行指南](docs/AGENT_DEPLOY.md)。需要自己的 CloudBase 环境、PostgreSQL、邮箱登录、登记用户 UID 和邮箱，以及函数调用权限与网站安全域名。第三方云服务可能收费。
+
+```sh
+# 先复制 .env.example 为 .env，填写自己的配置
+npm run install:local
+npx tcb login
+npm run deploy -- --dry-run
+npm run deploy
 ```
 
----
+旧部署升级前先导出学习记录。新版部署顺序是 **完整数据库迁移 → 云函数 → public/**；只更新前端会缺少每日记录与恢复协议支持。迁移保留已有记录，生成空状态只用于首次建库。`private/` 仅作为受保护云函数资产部署，绝不上传到静态托管。
 
-## 部署到腾讯云（概要）
+## 项目导航
 
-完整步骤见 **[`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md)**。概要：
+| 目录 | 用途 |
+| --- | --- |
+| `public/` | 前端、公式渲染、离线缓存、草稿板 |
+| `functions/math2-api/` | 账号校验、受保护题库、记录同步、每日记录与恢复 |
+| `scripts/` | 示例生成、校验导入、资源打包、数据库迁移、构建、部署 |
+| `private/` | 个人题库、图片、本地模拟数据和导入备份；Git 忽略 |
+| `tests/` | 现有项目测试；运行前先 setup |
+| `docs/` | 部署、导入、Agent 交接与更新说明 |
 
-1. 准备一个腾讯云账号并开通 CloudBase，创建一个**按量计费**环境，记下**环境 ID** 与**地域**。
-2. 复制 `.env.example` 为 `.env`，填入环境 ID、你的登录**邮箱**和该账号的 **UID**。
-3. `npm ci && node scripts/install.cjs`（本地构建与自检）。
-4. `npx tcb login`（浏览器登录）。
-5. `node scripts/deploy.cjs --dry-run` 预览将执行的云端命令；确认无误后 `node scripts/deploy.cjs` 实际部署（会创建/更新云资源并公开站点，脚本会要求你输入环境 ID 二次确认）。
-6. 打开静态托管默认域名，用登记邮箱登录，写一条笔记并刷新验证同步。
+## 验证与限制
 
-> `deploy.cjs` 的健康检查只证明**云函数进程能响应**；**数据库可用与完整功能需你按上面第 6 步在浏览器手动验证**。脚本不会宣称「全部正常」。
+`npm test` 验证同步、恢复、鉴权、每日记录等逻辑；`npm run validate:bank` 检查题库结构。浏览器验收需实际检查公式和图片、三个分区、笔记保存、完成记录、目标、草稿板、备份与刷新。云端验收还需登记账号登录、第二个隔离浏览器读取同步结果、离线重开与更新。
 
-让编程 Agent 帮你装？见 **[`docs/AGENT_DEPLOY.md`](docs/AGENT_DEPLOY.md)**，README 末尾也有可直接复制的指令。
-
----
-
-## 配置项一览
-
-| 名称 | 用途 | 必填 | 虚构示例 | 腾讯云控制台获取位置 | 是否敏感 | 配置位置 |
-|---|---|---|---|---|---|---|
-| `CLOUDBASE_ENV` | CloudBase 环境 ID，构建时注入前端、并被 `sql.cjs`/`deploy.cjs` 使用 | 是 | `your-env-id` | 云开发 → 环境 → 环境 ID | 否（公开标识符） | `.env`（前端构建 + 脚本） |
-| `CLOUDBASE_REGION` | 环境地域 | 否（默认 `ap-shanghai`） | `ap-shanghai` | 云开发 → 环境详情 → 地域 | 否 | `.env`（前端构建 + 脚本） |
-| `MATH2_ENV_ID` | 云函数运行时拼接鉴权网关地址用的环境 ID | 是 | `your-env-id` | 同 `CLOUDBASE_ENV` | 否 | **服务端**（云函数环境变量） |
-| `MATH2_ALLOWED_UID` | 唯一允许访问的账号 UID | 是 | `1000000000000000001` | 身份认证/用户管理 → 用户 → UID | 是（个人标识） | **服务端**（云函数环境变量） |
-| `MATH2_ALLOWED_EMAIL` | 唯一允许访问的账号邮箱（须与登录用户一致） | 是 | `you@example.com` | 身份认证/用户管理 → 用户 | 是（个人信息） | **服务端**（云函数环境变量） |
-| `MATH2_REGION` | 云函数地域覆盖 | 否（默认 `ap-shanghai`） | `ap-shanghai` | 同地域 | 否 | **服务端**（云函数环境变量） |
-| `TENCENTCLOUD_SECRETID/SECRETKEY/SESSIONTOKEN` | 云函数访问数据库的临时凭据 | **不要手填** | —— | 由 CloudBase 运行时**自动注入** | **是（密钥）** | 服务端自动注入；**严禁**写入 `.env`、前端或版本库 |
-
-关于「网址/域名/参数」：
-
-- **网站地址**：静态托管的默认域名（控制台 → 静态网站 → 访问地址）。这是部署**产出**，不是需要你填的变量。
-- **后端 API 地址**：云函数鉴权网关 `https://<环境ID>.api.tcloudbasegateway.com`，由 `MATH2_ENV_ID` **自动推导**，无需单独配置。前端 `index.html` 的 CSP 已放行 `*.tcloudbasegateway.com` 等域名。
-- **环境 ID / 地域**：即上表 `CLOUDBASE_ENV` / `CLOUDBASE_REGION`。
-- 服务器密钥（SecretId/SecretKey）**绝不能进入浏览器代码**；前端只包含公开的环境 ID。
-
-`.env` 已被 git 忽略；`.env.example` 是不含敏感值的模板。
-
----
-
-## 导入你自己的题库
-
-示例题库由 `scripts/make-demo-bank.cjs` 生成（`mode:"demo"`，全部虚构）。要换成你自己的内容：
-
-1. 按相同 schema 准备 `private/data/bank.json`（完整题库，含两个分区）与 `private/data/legacy-bank.json`（旧客户端用的精简题库），图片放入 `private/images/`。题目结构、字段与 ID 规则见 [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md#题库-schema) 与 `scripts/make-demo-bank.cjs`。
-2. 重新运行 `npm run setup && npm run build`，再 `node scripts/deploy.cjs`。
-3. `private/` 已被 git 忽略——**你导入的真实题库不会被提交**。请自行确认拥有再分发权限。
-
-导入后先自检（本地，不碰云）：
-
-```bash
-npm test                 # Node 测试（含分区计数、图片资源存在性、鉴权，20 项）
-npm run test:browser     # 浏览器：离线、保存、图片放大、移动端布局（需本机 Edge/Chrome）
-npm run test:banks-browser  # 浏览器：双分区笔记隔离、跨设备、章节遍历（题库较大时耗时更长）
-npm run serve            # 本地静态预览 http://127.0.0.1:8787（不含云同步）
-npm run serve:mock       # 本地模拟云端预览 http://127.0.0.1:8788（可实际做题，见下）
-```
-```
-
-> 题库规模会明显影响耗时：`setup` 需拷贝并重算全部资源哈希，`test:banks-browser` 会把整份题库灌进浏览器缓存。**945 题 / 1725 张图（约 58 MB）** 实测 `setup` 约 1 分钟、浏览器测试数分钟，属正常。
-
-> ID 命名空间 `cxyonly:`（真题分区）与 `lilin880:`（分册分区）是**结构性标识**，被 `core.js`/`engine.cjs`/`storage.js` 的校验正则共用。保留它们可避免大范围改动；如需改名，须同步修改这些正则与 `index.html`/`app.js` 中的 `data-bank` 与标签。
-
----
-
-## 升级、备份、恢复、卸载
-
-见 [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) 的「运维」一节。要点：
-
-- **升级默认保护已有记录**：`schema.sql` 用 `ON CONFLICT DO NOTHING` 初始化，重复部署不会清空数据库；前端更新题库时保留本机笔记与待同步队列。
-- **备份**：应用内「备份与恢复 → 导出全部学习记录」下载 JSON；云端 `math2_private.restores` 保留恢复历史快照。
-- **卸载**：删除云函数、清空静态托管、删除 `math2_private` schema 与环境即可；本地删除目录。
-
----
-
-## 许可证
-
-原始代码采用 **MIT**（见 [`LICENSE`](LICENSE)）。第三方组件各自遵循其许可证，详见 [`NOTICE.md`](NOTICE.md)（KaTeX/MIT、marked/MIT、DOMPurify/Apache-2.0 或 MPL-2.0、CloudBase SDK、esbuild、fake-indexeddb、playwright 等）。题库内容**不在** MIT 授权范围内。
-
----
-
-## 给编程 Agent 的安装指令（可直接复制）
-
-**用法（共两步）**：① 拿到题库 zip 包；② 把下面提示词里的 `<题库包路径>` 换成实际路径，整段粘给会执行命令的 AI。仓库不用提前下载，AI 会自己获取；解压、构建、配置、部署全部由 AI 代办，你只需要在它明确要求时动手（登录腾讯云、填验证码、确认授权）。
-
-```
-请帮我把这个「数二练习本」开源项目部署到我自己的腾讯云 CloudBase 环境。
-- 代码仓库：https://github.com/WJQ123321-ops/math2-practice。如果你还没有这份代码，先 git clone 到工作目录；clone 失败（网络受限）就改用 https://codeload.github.com/WJQ123321-ops/math2-practice/zip/refs/heads/main 下载 zip 后解压；仍不行再让我手动从 GitHub 网页下载并告诉你路径。
-- 我的题库是一个 zip 包：<题库包路径>（解压后是 private/ 目录：data/*.json + images/）。
-请全程代办，我只做你明确要求我亲手做的事（登录、填验证码、确认授权）。要求：
-1. 读仓库里的 README.md、docs/DEPLOYMENT.md、docs/AGENT_DEPLOY.md；检查 Node 版本（≥20.19）与依赖，node_modules 缺失则 npm ci。
-2. 解压我的题库包，把其中的 private/ 合并到项目根目录 private/，然后依次运行 npm run setup（重新生成受保护资源与清单，题库约 945 题/1725 张图时约需 1 分钟，属正常）和 npm run build。
-3. 内容边界：private/、functions/math2-api/assets/、.env、schema.sql 必须保持 git 忽略，绝不提交，绝不把题目或图片内容贴进聊天/Issue/PR。
-4. 一次性列出所有还缺的必填配置（CLOUDBASE_ENV、MATH2_ENV_ID、MATH2_ALLOWED_UID、MATH2_ALLOWED_EMAIL 等），不要反复追问；指导我去腾讯云控制台哪里获取，不要让我把密钥粘贴到聊天里。UID/邮箱属个人信息，写入 .env（git 忽略）即可，不要回显。
-5. 本地自检：npm test（20 项）；有本机浏览器时可选跑 npm run test:browser / npm run test:banks-browser（题库大，耗时数分钟属正常）。结果如实报告，没跑过的不要说成已通过。
-6. 在我明确授权后，再执行 npx tcb login 和 node scripts/deploy.cjs（先 --dry-run 给我看将执行什么）。部署会创建/更新云资源并公开站点、可能计费。
-7. 部署后做健康检查，并明确区分「函数进程存活」「数据库可用」「完整功能」；最后给我访问地址和手动验证步骤（邮箱登录 → 写条笔记 → 刷新确认同步），不要输出任何密钥。
-8. 失败时定位原因、给出恢复或清理步骤，保护我已有的数据；任何删除前先让我导出备份。
-9. 如需提交代码：只提交代码/文档/测试，先 git status 确认没有 private/、assets/、.env、schema.sql 混入；不要把题库内容写进提交信息或 PR。
-```
+函数 `health` 只说明进程存活，不能证明数据库正常。模拟服务和本地单元测试也不能证明真实云端部署成功。题目内容由导入者核对；本项目与考试机构、出版社或云服务商无隶属关系，不承诺内容正确或学习效果。
